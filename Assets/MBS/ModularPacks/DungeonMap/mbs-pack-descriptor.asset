@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!49 &4900000
+TextAsset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mbs-pack-descriptor
+  m_Script: "{\n    \"guid\": \"ed0550b4245b412d95e3d5c49ff7ffb1\",\n    \"_name\":
+    \"DungeonMap\",\n    \"_wallGroups\": [\n        {\n            \"guid\": \"02569ea2764149909d83a84a86825d96\",\n           
+    \"name\": \"DefaultWall\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"125bd883501a48b3afec9bc9d7e8f91e\",\n                    \"name\":
+    \"WallObj\",\n                    \"prefabs\": [\n                        {\n                           
+    \"fileID\": 919132149155446097,\n                            \"guid\": \"5313d889fa470c14dbe6b72d74630a30\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    }\n            ]\n        },\n        {\n            \"guid\": \"d9efa3d8b033415bae9b0d7ff30fb7c7\",\n           
+    \"name\": \"WindowWall\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"9554c6d8c1534c999d2266d442289a9d\",\n                    \"name\":
+    \"WallObj\",\n                    \"prefabs\": [\n                        {\n                           
+    \"fileID\": 919132149155446097,\n                            \"guid\": \"f19655d6060a9274e82f6cf816a53f1d\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    }\n            ]\n        },\n        {\n            \"guid\": \"84f370f4c10f4deca03db49e0a94eb0d\",\n           
+    \"name\": \"DoorWall\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"3ed94dbee93b48f697dab3c63efbb740\",\n                    \"name\":
+    \"WallObj\",\n                    \"prefabs\": [\n                        {\n                           
+    \"fileID\": 919132149155446097,\n                            \"guid\": \"229cf844d53537444a6f7600099111b2\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"d4d609ee6dce45519f2d6c9661fa75e1\",\n                   
+    \"name\": \"Door1\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 919132149155446097,\n                           
+    \"guid\": \"8eb92e956bdaf524b91f570ea5b08ff8\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"83bcb135a2f94bb188afe7e4b20029ba\",\n                   
+    \"name\": \"Door2\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 919132149155446097,\n                           
+    \"guid\": \"48cd9ad3bf44d60448bc7b771fa6849e\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"194fa600465c4bf5a5ea11bf5280a191\",\n                   
+    \"name\": \"Door3\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 919132149155446097,\n                           
+    \"guid\": \"208700db4c3a0e94f930e1bfae39cfe1\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"2bd995c8bb2b42f6aa4472ff8fbb2b64\",\n                   
+    \"name\": \"Door4\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 919132149155446097,\n                           
+    \"guid\": \"5a3d341c9b380fc44892753ed397eee7\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    }\n            ]\n        }\n    ],\n    \"_floorGroups\": [\n        {\n           
+    \"guid\": \"18bc8d6124a3418a961f871192978c31\",\n            \"name\": \"Floor\",\n           
+    \"_modules\": [\n                {\n                    \"guid\": \"07f72fd1b9f343aab8d07910454d0f73\",\n                   
+    \"name\": \"FloorObj\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 919132149155446097,\n                           
+    \"guid\": \"b3f7245a44aef9a49823a7d078169664\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    }\n            ]\n        }\n    ],\n    \"_decoratorGroups\": [],\n    \"_decoratorCategories\":
+    [\n        {\n            \"guid\": \"cb9d06e03e734e72b32c74b78d9a8d68\",\n           
+    \"_name\": \"All\"\n        }\n    ]\n}"
