@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Playables;
 
 public enum EnemyNodeEnum
 {
@@ -14,15 +15,34 @@ public class EnemyNodeRunner
     public Dictionary<EnemyNodeEnum, EnemyNode> StateDictionary =
         new Dictionary<EnemyNodeEnum, EnemyNode>();
 
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
+	[Header("Chase Set")]
+	public EnemyNode ChaseNode;
+	public float sightRange;
+	public bool playerInSightRange;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[Header("Attack Set")]
+	public EnemyNode AttackNode;
+	public float attackRange;
+	public bool playerInAttackRange;
+
+	private Enemy _enemy;
+
+	public void Initialize(EnemyNodeEnum NodeState, Enemy enemy)
+	{
+		_enemy = enemy;
+		CurrentNode = StateDictionary[NodeState];
+		CurrentNode.Enter();
+	}
+
+	public void ChangeState(EnemyNodeEnum newState)
+	{
+		CurrentNode.Exit();
+		CurrentNode = StateDictionary[newState];
+		CurrentNode.Enter();
+	}
+
+	public void AddState(EnemyNodeEnum state, EnemyNode EnemyNode)
+	{
+		StateDictionary.Add(state, EnemyNode);
+	}
 }
