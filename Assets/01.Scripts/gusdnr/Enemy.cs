@@ -12,10 +12,8 @@ public class Enemy : MonoBehaviour
 	public Rigidbody RigidbodyCompo;
 	public Animator AnimatorCompo;
 	public NavMeshAgent AgentCompo;
-	public EnemyNodeRunner NodeRunner { get; private set; }
 
 	public void AnimationEndTrigger()
 	{
-		NodeRunner.CurrentNode.AnimatorFinishTrigger();
 	}
 }
