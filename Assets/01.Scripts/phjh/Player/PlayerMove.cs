@@ -5,7 +5,26 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : PlayerRoot
 {
-    private Vector2 inputVector;
+    Rigidbody rb;
+    public float h, v;
+    public Vector3 dir;
+    private void Start()
+    {
+        rb=  GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
+
+        dir = Quaternion.Euler(0, 45, 0) * new Vector3(v, 0, -h) * Time.deltaTime * stat.speed.GetStatValue();
+        rb.velocity = dir.normalized;
+        transform.position += dir;
+    }
+
+
+    /*private Vector2 inputVector;
     
     private void OnEnable()
     {
@@ -21,11 +40,8 @@ public class PlayerMove : PlayerRoot
     {
         Vector3 dir = Quaternion.Euler(0,45,0) *  new Vector3(inputVector.x, 0,  inputVector.y).normalized * Time.deltaTime * stat.speed.GetStatValue();
         _rb.velocity = dir;
-    }
+    }*/
 
-    public override void OnMove(InputAction.CallbackContext context)
-    {
-        inputVector = context.ReadValue<Vector2>();
-        base.OnMove(context);
-    }
+
+
 }

@@ -34,8 +34,8 @@ MonoBehaviour:
     BaseStat: 0
     modifiers: 
   speed:
-    BaseStat: 0
-    modifiers: 
+    BaseStat: 4
+    modifiers: 04000000
   manaRegen:
     BaseStat: 0
     modifiers: 
