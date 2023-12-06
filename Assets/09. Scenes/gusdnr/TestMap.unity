@@ -639,7 +639,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1901965875}
-  m_Father: {fileID: 2051942776}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &223618262
 NavMeshAgent:
@@ -3358,7 +3358,7 @@ Transform:
   m_GameObject: {fileID: 1851990011}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.26, z: 7.73}
+  m_LocalPosition: {x: 0, y: 0.78, z: 7.73}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3427,11 +3427,17 @@ VisualEffect:
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0.6212366, y: 2.0971684, z: 2.0348454, w: 1}
+        m_Name: GroundColor
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
-      m_Array: []
+      m_Array:
+      - m_Value: 7
+        m_Name: ThornCount
+        m_Overridden: 1
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
@@ -5102,7 +5108,6 @@ Transform:
   m_Children:
   - {fileID: 1535048904}
   - {fileID: 299133445}
-  - {fileID: 223618260}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2051942777
@@ -5409,3 +5414,4 @@ SceneRoots:
   - {fileID: 1069102701}
   - {fileID: 2051942776}
   - {fileID: 631803762}
+  - {fileID: 223618260}
