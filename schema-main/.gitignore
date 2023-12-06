@@ -1,0 +1,13 @@
+/.idea
+/.vscode
+/AssetsScreenshots
+/Build
+/Library
+/Logs
+/Packages
+/ProjectSettings
+/Temp
+/UserSettings
+/obj
+
+.DS_Store
