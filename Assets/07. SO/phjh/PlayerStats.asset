@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: PlayerStat
+  m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStat
   intelligence:
     BaseStat: 0
@@ -18,7 +18,7 @@ MonoBehaviour:
   mana:
     BaseStat: 0
     modifiers: 
-  manaRegen:
+  attackSpeed:
     BaseStat: 0
     modifiers: 
   criticalChance:
@@ -31,5 +31,11 @@ MonoBehaviour:
     BaseStat: 0
     modifiers: 
   maxHealth:
+    BaseStat: 0
+    modifiers: 
+  speed:
+    BaseStat: 0
+    modifiers: 
+  manaRegen:
     BaseStat: 0
     modifiers: 

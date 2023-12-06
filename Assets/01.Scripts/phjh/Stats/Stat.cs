@@ -3,9 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Equipments
+public enum StatType
 {
+    intelligence,
+    mana,
+    manaregen,
+    criticalChance,
+    criticalDamage,
+    armor,
+    maxHealth,
+    speed,
+}
+
+[CreateAssetMenu(menuName = "SO/Player/Stat")]
+public class PlayerStat : ScriptableObject
+{
+    [Header("Damage stats")]
+    public Stat intelligence;
+    public Stat mana;
+    public Stat attackSpeed;
+    public Stat criticalChance;
+    public Stat criticalDamage;
     
+    [Header("Living Stats")] 
+    public Stat armor;
+    public Stat maxHealth;
+
+    [Header("Util Stats")] 
+    public Stat speed;
+    public Stat manaRegen;
 }
 
 [Serializable]
@@ -16,7 +42,7 @@ public class Stat  // 그냥 알아서  int만
     public List<int> modifiers;
     //public Dictionary<Equipments, int> modifierss;
     
-    public int SumValue()
+    public int GetStatValue()
     {
         int sum = 0;
         foreach (int i in modifiers)
@@ -35,6 +61,4 @@ public class Stat  // 그냥 알아서  int만
     {
         BaseStat -= i;
     }
-
-
 }
