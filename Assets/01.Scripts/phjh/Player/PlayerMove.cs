@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerMove : PlayerRoot
 {
     Rigidbody rb;
-    public float h, v;
-    public Vector3 dir;
+    float h, v;
+    Vector3 dir;
+    public int nowstate = 0;
     private void Start()
     {
         rb=  GetComponent<Rigidbody>();
@@ -23,6 +24,18 @@ public class PlayerMove : PlayerRoot
         transform.position += dir;
     }
 
+    private void LateUpdate()
+    {
+        Ray ray = _mainCam.ScreenPointToRay(_mousePos);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, _mainCam.farClipPlane))
+        {
+            Vector3 worldPos = hitInfo.point;
+            Vector3 ldir = (worldPos - transform.position);
+            ldir.y = 0;
+            transform.rotation = Quaternion.LookRotation(ldir);
+        }
+    }
 
     /*private Vector2 inputVector;
     

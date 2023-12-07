@@ -9,6 +9,9 @@ public class PlayerAnimation : MonoBehaviour
     
     private readonly int attackHash = Animator.StringToHash("Attack");
 
+    [SerializeField]
+    private GameObject FireObject;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -25,7 +28,9 @@ public class PlayerAnimation : MonoBehaviour
     IEnumerator attack()
     {
         _animator.SetBool(attackHash,true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(FireObject, transform.position, transform.parent.rotation);
+        yield return new WaitForSeconds(0.5f);
         _animator.SetBool(attackHash,false);
     }
 }
