@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EnemyAI : MonoBehaviour
     private float hp;
     public float HP => hp;
     public bool isAlive = true;
+
+    [SerializeField] private VisualEffect AttackEffect;
 
     public NavMeshAgent agent;
     public Transform target;
@@ -41,14 +44,17 @@ public class EnemyAI : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange)
         {
             Patroling();
+            AttackEffect.enabled = false;
         }
         if(playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
+            AttackEffect.enabled = false;
         }
         if(playerInSightRange && playerInAttackRange)
         {
             AttackPlayer();
+            AttackEffect.enabled = true;
         }
 	}
 
@@ -100,7 +106,7 @@ public class EnemyAI : MonoBehaviour
         {
             //Attack code
             Debug.Log("Attack");
-
+            AttackEffect.Play();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
