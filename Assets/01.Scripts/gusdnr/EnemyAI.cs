@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Enemy HP")]
+    [SerializeField, Range(1, 100)] private float maxHP;
+    private float hp;
+    public float HP => hp;
+    public bool isAlive = true;
+
+    [SerializeField] private VisualEffect AttackEffect;
+
     public NavMeshAgent agent;
     public Transform target;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -23,23 +32,29 @@ public class EnemyAI : MonoBehaviour
 	{
 		target = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
+        hp = maxHP;
+        isAlive = true;
 	}
 
 	private void Update()
 	{
+        if(!isAlive) Destroy(gameObject);
 		playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 		playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         if (!playerInSightRange && !playerInAttackRange)
         {
             Patroling();
+            AttackEffect.enabled = false;
         }
         if(playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
+            AttackEffect.enabled = false;
         }
         if(playerInSightRange && playerInAttackRange)
         {
             AttackPlayer();
+            AttackEffect.enabled = true;
         }
 	}
 
@@ -91,10 +106,18 @@ public class EnemyAI : MonoBehaviour
         {
             //Attack code
             Debug.Log("Attack");
-
+            AttackEffect.Play();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        //Damage 받는 애니메이션 재생
+        hp -= damage;
+        Mathf.Clamp(hp, 0, maxHP);
+        if(hp <= 0) isAlive = false;
     }
 
     private void ResetAttack()
