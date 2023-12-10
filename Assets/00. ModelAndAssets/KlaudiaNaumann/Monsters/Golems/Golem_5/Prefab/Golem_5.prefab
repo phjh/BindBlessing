@@ -1444,6 +1444,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e2d44ecf4a0b53146b3efa00014f01d8, type: 2}
+  - {fileID: 2100000, guid: c0a18d70b87b6c34792543b52405381c, type: 2}
   - {fileID: 2100000, guid: 884215be1c0ceda439ed559ad3fe4719, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

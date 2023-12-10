@@ -6,16 +6,18 @@ using UnityEngine.VFX;
 
 public class EnemyAI : MonoBehaviour
 {
-    [Header("Enemy HP")]
-    [SerializeField, Range(1, 100)] private float maxHP;
-    private float hp;
-    public float HP => hp;
-    public bool isAlive = true;
+    private Enemy EnemyMain;
 
-    [SerializeField] private VisualEffect AttackEffect;
+    [Header("Enemy Stat")]
+    [SerializeField, Range(1, 100)] private float maxHP;
+    [SerializeField, Range(1, 100)] private float speed;
+    private float hp;
+    [HideInInspector] public float HP => hp;
+    [HideInInspector] public bool isAlive = true;
 
     public NavMeshAgent agent;
     public Transform target;
+    public EnemyAttack enemyAttack;
     public LayerMask whatIsGround, whatIsPlayer;
     
     public Vector3 walkPoint;
@@ -31,52 +33,32 @@ public class EnemyAI : MonoBehaviour
 	private void Awake()
 	{
 		target = GameObject.Find("PlayerObj").transform;
+        EnemyMain = GetComponent<Enemy>();
         agent = GetComponent<NavMeshAgent>();
+        enemyAttack = GetComponent<EnemyAttack>();
         hp = maxHP;
+        agent.speed = speed;
         isAlive = true;
 	}
 
 	private void Update()
 	{
-        if(!isAlive) Destroy(gameObject);
+        if(!isAlive)
+        {
+
+        }
 		playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 		playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        if (!playerInSightRange && !playerInAttackRange)
-        {
-            Patroling();
-            AttackEffect.enabled = false;
-        }
+
         if(playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
-            AttackEffect.enabled = false;
         }
         if(playerInSightRange && playerInAttackRange)
         {
             AttackPlayer();
-            AttackEffect.enabled = true;
         }
 	}
-
-	private void Patroling()
-    {
-        if(!walkingPointSet)
-        {
-            SearchWalkPoint();
-        }
-
-        if(walkingPointSet)
-        {
-            agent.SetDestination(walkPoint);
-        }
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        if(distanceToWalkPoint.magnitude < 1f)
-        {
-            walkingPointSet = false;
-        }
-    }
 
     private void SearchWalkPoint()
     {
@@ -89,6 +71,11 @@ public class EnemyAI : MonoBehaviour
         {
             walkingPointSet = true;
         }
+    }
+
+    private void Aroundmove()
+    {
+
     }
 
     private void ChasePlayer()
@@ -104,9 +91,9 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            //Attack code
-            Debug.Log("Attack");
-            AttackEffect.Play();
+            EnemyMain.AnimatorCompo.SetBool("Attack", true);
+            if(EnemyMain.isStartAttack) enemyAttack.Attack();
+            enemyAttack.Attack();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
