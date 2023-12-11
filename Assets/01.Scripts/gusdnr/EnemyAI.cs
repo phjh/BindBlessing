@@ -47,55 +47,55 @@ public class EnemyAI : MonoBehaviour
 
         }*/
 		playerInDistancRange = Physics.CheckSphere(transform.position, maxAttackRange, whatIsPlayer);
-		playerInAttackRange = Physics.CheckSphere(transform.position, minAttackRange + maxAttackRange / 2 + 2, whatIsPlayer);
-        if(!playerInDistancRange && !playerInAttackRange)
+		//playerInAttackRange = Physics.CheckSphere(transform.position, minAttackRange + maxAttackRange / 2, whatIsPlayer);
+        if(!playerInDistancRange /*&& !playerInAttackRange*/)
         {
             ChasePlayer();
         }
-        if(playerInDistancRange && !playerInAttackRange)
+        if(playerInDistancRange /*&& !playerInAttackRange*/)
         {
             Aroundmove();
         }
-        if(playerInDistancRange && playerInAttackRange)
+/*        if(playerInDistancRange && playerInAttackRange)
         {
             AttackPlayer();
-        }
+        }*/
 
 	}
 
 
     private void Aroundmove()
     {
-        float aroundX = Random.Range(transform.position.x - minAttackRange, transform.position.x - maxAttackRange);
-        float aroundZ = Random.Range(transform.position.z - minAttackRange, transform.position.z - maxAttackRange);
+		Debug.Log("Around Moving");
+		transform.LookAt(target);
+        float aroundX = Random.Range(transform.position.x - minAttackRange, transform.position.x + minAttackRange);
+        float aroundZ = Random.Range(transform.position.z - minAttackRange, transform.position.z + minAttackRange);
         Vector3 aroundDir = new Vector3(aroundX, transform.position.y, aroundZ);
         
         agent.SetDestination(aroundDir);
         isMove = true;
+
+		if (!alreadyAttacked)
+		{
+		    AttackPlayer();
+		}
 	}
 
     private void ChasePlayer()
     {
+        Debug.Log("Chasing");
         agent.SetDestination(target.position);
         isMove = true;
     }
 
     private void AttackPlayer()
     {
+        Debug.Log("Attacking");
         agent.SetDestination(transform.position);
 
-        transform.LookAt(target);
-
-        if (!alreadyAttacked)
-        {
-            isMove = false;
-			alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-        else if (alreadyAttacked)
-        {
-
-        }
+        isMove = false;
+		alreadyAttacked = true;
+        Invoke(nameof(ResetAttack), timeBetweenAttacks);
     }
 
     public void TakeDamage(float damage)
