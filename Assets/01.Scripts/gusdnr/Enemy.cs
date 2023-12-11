@@ -11,17 +11,36 @@ public class Enemy : MonoBehaviour
 
 	public bool isStartAttack = false;
 
-	public Rigidbody RigidbodyCompo;
 	public Animator AnimatorCompo;
 	public NavMeshAgent AgentCompo;
 
+	public AttackShaderControl AttackShader;
+
+	private EnemyAttack enemyAttack;
+
+	private void Start()
+	{
+		enemyAttack = GetComponent<EnemyAttack>();
+	}
+
 	public void AnimationStartTrigger()
 	{
-		isStartAttack = true;
 	}
 
 	public void AnimationEndTrigger()
 	{
+	}
+
+	public void AttackStartTrigger()
+	{
+		enemyAttack.Attack();
+		AttackShader.SetAttackColor();
+	}
+
+	public void AttackEndTrigger()
+	{
+		AnimatorCompo.SetBool("Attack", false);
 		isStartAttack = false;
+		AttackShader.SetDefaultColor();
 	}
 }

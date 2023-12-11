@@ -19,4 +19,14 @@ public class EnemyAnimationTrigger : MonoBehaviour
 	{
 		_enemy.AnimationEndTrigger();
 	}
+
+	public void AttackStartTrigger()
+	{
+		_enemy.AttackStartTrigger();
+	}
+
+	public void AttackEndTrigger()
+	{
+		_enemy.AttackEndTrigger();
+	}
 }

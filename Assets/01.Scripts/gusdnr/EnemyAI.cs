@@ -7,6 +7,8 @@ using UnityEngine.VFX;
 public class EnemyAI : MonoBehaviour
 {
     private Enemy EnemyMain;
+    private EnemyAttack enemyAttack;
+    private NavMeshAgent agent;
 
     [Header("Enemy Stat")]
     [SerializeField, Range(1, 100)] private float maxHP;
@@ -15,72 +17,67 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector] public float HP => hp;
     [HideInInspector] public bool isAlive = true;
 
-    public NavMeshAgent agent;
     public Transform target;
-    public EnemyAttack enemyAttack;
     public LayerMask whatIsGround, whatIsPlayer;
     
-    public Vector3 walkPoint;
-    bool walkingPointSet;
-    public float walkingPointRange;
+    public bool isMove;
 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
 
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public float minAttackRange, maxAttackRange;
+    public bool playerInDistancRange, playerInAttackRange;
 
 	private void Awake()
 	{
 		target = GameObject.Find("PlayerObj").transform;
         EnemyMain = GetComponent<Enemy>();
-        agent = GetComponent<NavMeshAgent>();
         enemyAttack = GetComponent<EnemyAttack>();
+        agent = EnemyMain.AgentCompo;
         hp = maxHP;
         agent.speed = speed;
         isAlive = true;
+        isMove = false;
 	}
 
 	private void Update()
 	{
-        if(!isAlive)
+/*        if(!isAlive)
         {
 
-        }
-		playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-		playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if(playerInSightRange && !playerInAttackRange)
+        }*/
+		playerInDistancRange = Physics.CheckSphere(transform.position, maxAttackRange, whatIsPlayer);
+		playerInAttackRange = Physics.CheckSphere(transform.position, minAttackRange + maxAttackRange / 2 + 2, whatIsPlayer);
+        if(!playerInDistancRange && !playerInAttackRange)
         {
             ChasePlayer();
         }
-        if(playerInSightRange && playerInAttackRange)
+        if(playerInDistancRange && !playerInAttackRange)
+        {
+            Aroundmove();
+        }
+        if(playerInDistancRange && playerInAttackRange)
         {
             AttackPlayer();
         }
+
 	}
 
-    private void SearchWalkPoint()
-    {
-        float randomZ = Random.Range(-walkingPointRange, walkingPointRange);
-        float randomX = Random.Range(-walkingPointRange, walkingPointRange);
-    
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        
-        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkingPointSet = true;
-        }
-    }
 
     private void Aroundmove()
     {
-
-    }
+        float aroundX = Random.Range(transform.position.x - minAttackRange, transform.position.x - maxAttackRange);
+        float aroundZ = Random.Range(transform.position.z - minAttackRange, transform.position.z - maxAttackRange);
+        Vector3 aroundDir = new Vector3(aroundX, transform.position.y, aroundZ);
+        
+        agent.SetDestination(aroundDir);
+        isMove = true;
+	}
 
     private void ChasePlayer()
     {
         agent.SetDestination(target.position);
+        isMove = true;
     }
 
     private void AttackPlayer()
@@ -91,11 +88,13 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            EnemyMain.AnimatorCompo.SetBool("Attack", true);
-            if(EnemyMain.isStartAttack) enemyAttack.Attack();
-            enemyAttack.Attack();
-            alreadyAttacked = true;
+            isMove = false;
+			alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+        else if (alreadyAttacked)
+        {
+
         }
     }
 

@@ -5,11 +5,17 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] private GameObject AttackEffect;
-    
+    private Enemy EnemyMain;
+
     public Transform AttackPos;
 
-    public void Attack()
+	private void Awake()
+	{
+		EnemyMain = GetComponent<Enemy>();
+	}
+
+	public void Attack()
     {
-        Instantiate(AttackEffect, AttackPos.position, transform.rotation);
+		Instantiate(AttackEffect, AttackPos.position, transform.rotation);
     }
 }
