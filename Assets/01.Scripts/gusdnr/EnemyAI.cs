@@ -114,9 +114,10 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log(damage);
         //Damage 받는 애니메이션 재생
         hp -= damage;
-        Mathf.Clamp(hp, 0, maxHP);
+        //Mathf.Clamp(hp, 0, maxHP);
         if(hp <= 0) isAlive = false;
     }
 

@@ -13,6 +13,14 @@ public class LightningOrb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(this.gameObject);
+        if (other.TryGetComponent<EnemyAI>(out EnemyAI ai))
+        {
+            Debug.Log(other.name);      
+            ai.TakeDamage(1);
+        }
+        else
+        {
+            Debug.Log(other.name);
+        }
     }
 }

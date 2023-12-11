@@ -26,15 +26,17 @@ public class PlayerMove : PlayerRoot
 
     private void LateUpdate()
     {
-        Ray ray = _mainCam.ScreenPointToRay(_mousePos);
+        Ray ray = _mainCam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, _mainCam.farClipPlane))
         {
+            nowstate = 1;
             Vector3 worldPos = hitInfo.point;
             Vector3 ldir = (worldPos - transform.position);
             ldir.y = 0;
             transform.rotation = Quaternion.LookRotation(ldir);
         }
+        nowstate = 0;
     }
 
     /*private Vector2 inputVector;

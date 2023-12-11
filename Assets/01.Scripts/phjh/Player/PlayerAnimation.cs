@@ -11,6 +11,8 @@ public class PlayerAnimation : MonoBehaviour
 
     [SerializeField]
     private GameObject FireObject;
+    [SerializeField]
+    private Transform FirePosition;
 
     private void Start()
     {
@@ -28,9 +30,10 @@ public class PlayerAnimation : MonoBehaviour
     IEnumerator attack()
     {
         _animator.SetBool(attackHash,true);
-        yield return new WaitForSeconds(0.5f);
-        Instantiate(FireObject, transform.position, transform.parent.rotation);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+        Destroy(Instantiate(FireObject, FirePosition.position, transform.parent.rotation), 5);
+        //yield return new WaitForSeconds(0.8f);
         _animator.SetBool(attackHash,false);
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 }
