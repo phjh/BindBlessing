@@ -23,6 +23,18 @@ public class Enemy : MonoBehaviour
 		enemyAttack = GetComponent<EnemyAttack>();
 	}
 
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.A))
+		{
+			AttackShader.SetAttackColor();
+		}
+		if (Input.GetKeyDown(KeyCode.D))
+		{
+			AttackShader.SetDefaultColor();
+		}
+	}
+
 	public void AnimationStartTrigger()
 	{
 	}

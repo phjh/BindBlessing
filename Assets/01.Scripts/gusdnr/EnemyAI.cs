@@ -66,14 +66,22 @@ public class EnemyAI : MonoBehaviour
 
     private void Aroundmove()
     {
-		Debug.Log("Around Moving");
-		transform.LookAt(target);
-        float aroundX = Random.Range(transform.position.x - minAttackRange, transform.position.x + minAttackRange);
-        float aroundZ = Random.Range(transform.position.z - minAttackRange, transform.position.z + minAttackRange);
-        Vector3 aroundDir = new Vector3(aroundX, transform.position.y, aroundZ);
-        
-        agent.SetDestination(aroundDir);
-        isMove = true;
+		bool isMoveComplete = false;
+		float aroundX = Random.Range(transform.position.x - minAttackRange, transform.position.x + minAttackRange);
+		float aroundZ = Random.Range(transform.position.z - minAttackRange, transform.position.z + minAttackRange);
+	    Vector3 aroundDir = new Vector3(aroundX, transform.position.y, aroundZ);
+        if(!isMoveComplete)
+        {
+			Debug.Log("Around Moving");
+			transform.LookAt(target);
+            agent.SetDestination(aroundDir);
+		}
+		
+        if(transform.position == aroundDir )
+        {
+            isMoveComplete = true;
+        }
+		isMove = true;
 
 		if (!alreadyAttacked)
 		{
