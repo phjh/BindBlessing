@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyState
 {
-    protected EnemyMain _enemtMain;
+    protected EnemyMain _enemyMain;
     protected EnemyStateMachine _stateManchine;
     public EnemyStateEnum _stateEnum;
 
@@ -16,7 +16,7 @@ public class EnemyState
 
 	public EnemyState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName, EnemyStateEnum stateEnum)
     {
-        _enemtMain = enemyMain;
+        _enemyMain = enemyMain;
         _stateManchine = stateMachine;
         _animBoolHash = Animator.StringToHash(animationBoolName);
         _rigidbody = enemyMain.RigidCompo;
@@ -32,7 +32,7 @@ public class EnemyState
 
 	public virtual void Enter()
     {
-        _enemtMain.AnimatorCompo.SetBool(_animBoolHash, true);
+        _enemyMain.AnimatorCompo.SetBool(_animBoolHash, true);
         _triggerCalled = false;
     }
 
@@ -43,7 +43,7 @@ public class EnemyState
 
     public virtual void Exit()
     {
-        _enemtMain.AnimatorCompo.SetBool(_animBoolHash, false);
+        _enemyMain.AnimatorCompo.SetBool(_animBoolHash, false);
     }
 
     public virtual void AnimationFinishTrigger()

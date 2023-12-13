@@ -14,6 +14,8 @@ public class EnemyMain : MonoBehaviour
 	[Header("Enemy Judgment Values")]
 	[SerializeField,Range(0,100)] private float minRange;
 	[SerializeField,Range(0,100)] private float maxRange;
+	public float RandomRadius = 10f;
+	public bool isCompleteCoolDownAttak;
 	[SerializeField] private Transform targetTrm;
 	[HideInInspector]public Transform TargetTrm => targetTrm;
 	[HideInInspector]public float MinRange => minRange;
@@ -30,8 +32,6 @@ public class EnemyMain : MonoBehaviour
 
 	public AttackShaderControl AttackShader;
 
-	private EnemyAttack enemyAttack;
-
 	private void Awake()
 	{
 		Transform visualTrm = transform.Find("Visual");
@@ -39,11 +39,13 @@ public class EnemyMain : MonoBehaviour
 		RigidCompo = GetComponent<Rigidbody>();
 		ColliderCompo = GetComponent<Collider>();
 
+		isCompleteCoolDownAttak = true;
+
 		StateMachine = new EnemyStateMachine();
 
 		foreach(EnemyState state in EnemyDoingStates)
 		{
-			string typeName = state._stateEnum.ToString();
+
 			try
 			{
 				StateMachine.AddState(state._stateEnum, state);
@@ -63,7 +65,16 @@ public class EnemyMain : MonoBehaviour
 	protected virtual void Update()
 	{
 		StateMachine.CurrentState.UpdateState();
+	}
 
+	public void CoolDownAttack()
+	{
+		isCompleteCoolDownAttak = true;
+	}
+
+	public void StartImmediately()
+	{
+		AgentCompo.isStopped = false;
 	}
 
 	public void StopImmediately()
@@ -75,4 +86,16 @@ public class EnemyMain : MonoBehaviour
 	{
 		StateMachine.CurrentState.AnimationFinishTrigger();
 	}
+
+	public void OnDie()
+	{
+		Destroy(gameObject);
+	} 
+
+	public bool IsTargetInRange()
+	{
+		float distanceToTarget = Vector3.Distance(transform.position, TargetTrm.position);
+		return distanceToTarget >= MinRange && distanceToTarget <= MaxRange;
+	}
+
 }
