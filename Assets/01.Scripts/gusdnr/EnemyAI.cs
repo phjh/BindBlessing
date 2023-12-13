@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 
 public class EnemyAI : MonoBehaviour
 {
-    private Enemy EnemyMain;
+    private EnemyMain EnemyMain;
     private EnemyAttack enemyAttack;
     private NavMeshAgent agent;
 
@@ -31,7 +31,7 @@ public class EnemyAI : MonoBehaviour
 	private void Awake()
 	{
 		target = GameObject.Find("PlayerObj").transform;
-        EnemyMain = GetComponent<Enemy>();
+        EnemyMain = GetComponent<EnemyMain>();
         enemyAttack = GetComponent<EnemyAttack>();
         agent = EnemyMain.AgentCompo;
         hp = maxHP;

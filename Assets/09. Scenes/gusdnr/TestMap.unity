@@ -309,8 +309,6 @@ GameObject:
   - component: {fileID: 59223382}
   - component: {fileID: 59223385}
   - component: {fileID: 59223383}
-  - component: {fileID: 59223384}
-  - component: {fileID: 59223386}
   m_Layer: 0
   m_Name: Enemy_Golem
   m_TagString: Untagged
@@ -385,21 +383,6 @@ MonoBehaviour:
   maxAttackRange: 10
   playerInDistancRange: 0
   playerInAttackRange: 0
---- !u!114 &59223384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59223380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb866608d4db4ea40bf13790ef4e37fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackEffect: {fileID: 1015859156694869955, guid: f08689cc9b083e7499618e1287e2d45a,
-    type: 3}
-  AttackPos: {fileID: 143348212}
 --- !u!114 &59223385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,34 +398,10 @@ MonoBehaviour:
   HP: 10
   movementSpeed: 5
   attackDelay: 0.4
-  isStartAttack: 0
-  AnimatorCompo: {fileID: 1532018064}
-  AgentCompo: {fileID: 59223382}
+  minRange: 0
+  maxRange: 0
+  targetTrm: {fileID: 0}
   AttackShader: {fileID: 1532018062}
---- !u!114 &59223386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59223380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scripts:
-  - {fileID: 0}
-  autoReset: 1
-  tickOn: 0
-  sourceInfos:
-  - isFoldout: 1
-    breakPoints: 
-    breakPointStatuses: 
-    collapsedLines: 
-    btScript: 
-  _isInitialized: 1
-  _requiresRecompile: 0
 --- !u!1001 &96227245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3508,17 +3467,10 @@ MonoBehaviour:
   AttackOutlineMat: {fileID: 2100000, guid: c0a18d70b87b6c34792543b52405381c, type: 2}
   DefaultColor: {r: 0, g: 0, b: 0, a: 1}
   AttackColor: {r: 1, g: 0, b: 0, a: 1}
-  isBeforeCompleteChange: 0
   changeTime: 4
 --- !u!4 &1532018063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7417565525786355350, guid: 55963238c4b373240bcf2781dfcdd51e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1532018060}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1532018064 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3463356483269311724, guid: 55963238c4b373240bcf2781dfcdd51e,
     type: 3}
   m_PrefabInstance: {fileID: 1532018060}
   m_PrefabAsset: {fileID: 0}

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyAnimationTrigger : MonoBehaviour
 {
-	private Enemy _enemy;
+	private EnemyMain _enemy;
 	private void Awake()
 	{
-		_enemy = transform.parent.GetComponent<Enemy>();
+		_enemy = transform.parent.GetComponent<EnemyMain>();
 	}
 
-	public void AnimationStartTrigger()
+	/*public void AnimationStartTrigger()
 	{
 		_enemy.AnimationStartTrigger();
 	}
@@ -28,5 +28,5 @@ public class EnemyAnimationTrigger : MonoBehaviour
 	public void AttackEndTrigger()
 	{
 		_enemy.AttackEndTrigger();
-	}
+	}*/
 }
