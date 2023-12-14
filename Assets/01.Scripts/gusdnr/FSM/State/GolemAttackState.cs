@@ -11,16 +11,12 @@ public class GolemAttackState : EnemyState
 	public override void AnimationFinishTrigger()
 	{
 		base.AnimationFinishTrigger();
-		_enemyMain.StartCoroutine(_enemyMain.CoolDownAttack());
-		_stateManchine.ChangeState(EnemyStateEnum.Idle);
-
 	}
 
 	public override void AnimationPlayingTrigger()
 	{
 		base.AnimationPlayingTrigger();
-		_enemyMain.Attack();
-		_enemyMain.AttackShader.SetDefaultColor();
+		
 	}
 
 	public override void Enter()
