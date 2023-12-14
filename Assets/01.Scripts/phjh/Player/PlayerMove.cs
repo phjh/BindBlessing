@@ -37,6 +37,7 @@ public class PlayerMove : PlayerRoot
             transform.rotation = Quaternion.LookRotation(ldir);
         }
         nowstate = 0;
+
     }
 
     /*private Vector2 inputVector;

@@ -16,7 +16,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -29,11 +29,12 @@ public class PlayerAnimation : MonoBehaviour
 
     IEnumerator attack()
     {
+        Quaternion rot = transform.GetChild(0).transform.rotation;
         _animator.SetBool(attackHash,true);
-        yield return new WaitForSeconds(1f);
-        Destroy(Instantiate(FireObject, FirePosition.position, transform.parent.rotation), 5);
-        //yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.6f);
+        Destroy(Instantiate(FireObject, FirePosition.position, transform.rotation), 4);
+        yield return new WaitForSeconds(0.65f);
         _animator.SetBool(attackHash,false);
-        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        transform.GetChild(0).transform.rotation = Quaternion.Euler(rot.x, rot.y + 180, rot.z);
     }
 }
