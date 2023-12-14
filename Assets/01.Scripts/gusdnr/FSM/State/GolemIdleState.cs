@@ -11,6 +11,7 @@ public class GolemIdleState : EnemyState
 	public override void Enter()
 	{
 		base.Enter();
+		_enemyMain.StopImmediately(false);
 	}
 
 	public override void UpdateState()
@@ -24,7 +25,7 @@ public class GolemIdleState : EnemyState
 		{
 			if(_enemyMain.isCompleteCoolDownAttak)
 				_stateManchine.ChangeState(EnemyStateEnum.Attack);
-			else if (_enemyMain.isCompleteCoolDownAttak)
+			else
 				_stateManchine.ChangeState(EnemyStateEnum.Move);
 		}
 	}

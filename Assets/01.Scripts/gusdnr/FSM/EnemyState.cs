@@ -10,9 +10,6 @@ public class EnemyState
     protected int _animBoolHash;
     protected bool _endTriggerCalled;
     protected bool _playingTriggerCalled;
-	private EnemyMain enemyMain;
-	private EnemyStateMachine stateMachine;
-	private string animationBoolName;
 
 	public EnemyState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName)
     {
@@ -24,6 +21,7 @@ public class EnemyState
 
 	public virtual void Enter()
     {
+        if(_animBoolHash != 0)
         _enemyMain.AnimatorCompo.SetBool(_animBoolHash, true);
         _endTriggerCalled = false;
         _playingTriggerCalled = false;

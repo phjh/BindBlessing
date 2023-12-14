@@ -105985,13 +105985,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.8
-    functionName: AnimationStartTrigger
+    functionName: AnimationPlayingTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.55
+  - time: 2.3166666
     functionName: AnimationEndTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

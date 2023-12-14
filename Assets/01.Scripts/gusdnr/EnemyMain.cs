@@ -40,6 +40,7 @@ public class EnemyMain : MonoBehaviour
 		AnimatorCompo = visualTrm.GetComponent<Animator>();
 		RigidCompo = GetComponent<Rigidbody>();
 		ColliderCompo = GetComponent<Collider>();
+		AgentCompo = GetComponent<NavMeshAgent>();
 
 		isCompleteCoolDownAttak = true;
 
@@ -60,8 +61,6 @@ public class EnemyMain : MonoBehaviour
 				Debug.LogError($"{stateEnum} State를 받아오지 못했습니다. / 오류: {e.Message}");
 			}
 		}
-
-		targetTrm = GameObject.Find("PlayerObj").GetComponent<Transform>();
 	}
 
 	private void Start()
@@ -104,11 +103,6 @@ public class EnemyMain : MonoBehaviour
 	{
 		Destroy(gameObject);
 	} 
-
-	public void SetDestination()
-	{
-		AgentCompo.SetDestination(targetTrm.position);
-	}
 
 	public bool IsTargetInRange()
 	{

@@ -11,7 +11,7 @@ public class GolemChasingState : EnemyState
 	public override void Enter()
 	{
 		base.Enter();
-		_enemyMain.SetDestination();
+		_enemyMain.AgentCompo.SetDestination(_enemyMain.targetTrm.position);
 	}
 
 	public override void UpdateState()
