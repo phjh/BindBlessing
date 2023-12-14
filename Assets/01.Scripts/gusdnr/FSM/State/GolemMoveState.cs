@@ -5,9 +5,8 @@ using UnityEngine.AI;
 
 public class GolemMoveState : EnemyState
 {
-	public GolemMoveState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName, EnemyStateEnum stateEnum) : base(enemyMain, stateMachine, animationBoolName, stateEnum)
+	public GolemMoveState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName) : base(enemyMain, stateMachine, animationBoolName)
 	{
-		stateEnum = EnemyStateEnum.Move;
 	}
 
 	public override void AnimationFinishTrigger()

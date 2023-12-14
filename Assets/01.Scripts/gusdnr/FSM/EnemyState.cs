@@ -4,36 +4,29 @@ public class EnemyState
 {
     protected EnemyMain _enemyMain;
     protected EnemyStateMachine _stateManchine;
-    public EnemyStateEnum _stateEnum;
 
     protected Rigidbody _rigidbody;
 
     protected int _animBoolHash;
-    protected bool _triggerCalled;
+    protected bool _endTriggerCalled;
+    protected bool _playingTriggerCalled;
 	private EnemyMain enemyMain;
 	private EnemyStateMachine stateMachine;
 	private string animationBoolName;
 
-	public EnemyState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName, EnemyStateEnum stateEnum)
+	public EnemyState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName)
     {
         _enemyMain = enemyMain;
         _stateManchine = stateMachine;
         _animBoolHash = Animator.StringToHash(animationBoolName);
         _rigidbody = enemyMain.RigidCompo;
-        _stateEnum = stateEnum;
     }
-
-	public EnemyState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName)
-	{
-		this.enemyMain = enemyMain;
-		this.stateMachine = stateMachine;
-		this.animationBoolName = animationBoolName;
-	}
 
 	public virtual void Enter()
     {
         _enemyMain.AnimatorCompo.SetBool(_animBoolHash, true);
-        _triggerCalled = false;
+        _endTriggerCalled = false;
+        _playingTriggerCalled = false;
     }
 
     public virtual void UpdateState()
@@ -48,6 +41,12 @@ public class EnemyState
 
     public virtual void AnimationFinishTrigger()
     {
-        _triggerCalled = true;
+        _endTriggerCalled = true;
     }
+
+    public virtual void AnimationPlayingTrigger()
+    {
+        _playingTriggerCalled = true;
+    }
+
 }

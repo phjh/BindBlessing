@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GolemDieState : EnemyState
+public class GolemAttackState : EnemyState
 {
-	public GolemDieState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName) : base(enemyMain, stateMachine, animationBoolName)
+	public GolemAttackState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName) : base(enemyMain, stateMachine, animationBoolName)
 	{
 	}
 
 	public override void AnimationFinishTrigger()
 	{
 		base.AnimationFinishTrigger();
-		_enemyMain.OnDie();
+	}
+
+	public override void AnimationPlayingTrigger()
+	{
+		base.AnimationPlayingTrigger();
+		
 	}
 
 	public override void Enter()
 	{
 		base.Enter();
-		_enemyMain.StopImmediately();
+		_enemyMain.AttackShader.SetAttackColor();
 	}
 
 	public override void Exit()
@@ -29,5 +34,4 @@ public class GolemDieState : EnemyState
 	{
 		base.UpdateState();
 	}
-
 }

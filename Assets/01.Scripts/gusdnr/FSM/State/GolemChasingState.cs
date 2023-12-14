@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class GolemChasingState : EnemyState
 {
-	public GolemChasingState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName, EnemyStateEnum stateEnum) : base(enemyMain, stateMachine, animationBoolName, stateEnum)
+	public GolemChasingState(EnemyMain enemyMain, EnemyStateMachine stateMachine, string animationBoolName) : base(enemyMain, stateMachine, animationBoolName)
 	{
-		stateEnum = EnemyStateEnum.Chasing;
 	}
 
 	public override void Enter()

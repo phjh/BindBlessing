@@ -10,23 +10,14 @@ public class EnemyAnimationTrigger : MonoBehaviour
 		_enemy = transform.parent.GetComponent<EnemyMain>();
 	}
 
-	/*public void AnimationStartTrigger()
-	{
-		_enemy.AnimationStartTrigger();
-	}
-
 	public void AnimationEndTrigger()
 	{
 		_enemy.AnimationEndTrigger();
 	}
 
-	public void AttackStartTrigger()
+	public void AnimationPlayingTrigger()
 	{
-		_enemy.AttackStartTrigger();
+		_enemy.AnimationPlayingTrigger();
 	}
 
-	public void AttackEndTrigger()
-	{
-		_enemy.AttackEndTrigger();
-	}*/
 }

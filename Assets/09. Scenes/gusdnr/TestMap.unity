@@ -400,6 +400,8 @@ MonoBehaviour:
   attackDelay: 0.4
   minRange: 0
   maxRange: 0
+  RandomRadius: 10
+  isCompleteCoolDownAttak: 0
   targetTrm: {fileID: 0}
   AttackShader: {fileID: 1532018062}
 --- !u!1001 &96227245

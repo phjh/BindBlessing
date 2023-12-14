@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class EnemyMain : MonoBehaviour
 {
@@ -14,15 +15,17 @@ public class EnemyMain : MonoBehaviour
 	[Header("Enemy Judgment Values")]
 	[SerializeField,Range(0,100)] private float minRange;
 	[SerializeField,Range(0,100)] private float maxRange;
+	[SerializeField] private GameObject AttackEffect;
 	public float RandomRadius = 10f;
-	public bool isCompleteCoolDownAttak;
+	public Transform AttackPos;
+	[HideInInspector]public bool isCompleteCoolDownAttak;
 	[SerializeField] private Transform targetTrm;
 	[HideInInspector]public Transform TargetTrm => targetTrm;
 	[HideInInspector]public float MinRange => minRange;
 	[HideInInspector]public float MaxRange => maxRange;
 
-	[Header("Enemy States")]
-	public EnemyState[] EnemyDoingStates;
+	[Header("Enemy Name")]
+	[SerializeField] private string EnemyName = "Enemy";
 
 	public Animator AnimatorCompo {get; private set; }
 	public NavMeshAgent AgentCompo { get; private set; }
@@ -43,16 +46,19 @@ public class EnemyMain : MonoBehaviour
 
 		StateMachine = new EnemyStateMachine();
 
-		foreach(EnemyState state in EnemyDoingStates)
+		foreach(EnemyStateEnum stateEnum in Enum.GetValues(typeof(EnemyStateEnum)))
 		{
-
+			string typeName = stateEnum.ToString();
 			try
 			{
-				StateMachine.AddState(state._stateEnum, state);
+				Type type = Type.GetType($"{EnemyName}{typeName}State");
+				EnemyState stateInstance = Activator.CreateInstance(type, this, StateMachine, typeName) as EnemyState;
+
+				StateMachine.AddState(stateEnum, stateInstance);
 			}
 			catch (Exception e)
 			{
-				Debug.LogError($"{state} State를 받아오지 못했습니다. / 오류: {e.Message}");
+				Debug.LogError($"{stateEnum} State를 받아오지 못했습니다. / 오류: {e.Message}");
 			}
 		}
 	}
@@ -82,9 +88,19 @@ public class EnemyMain : MonoBehaviour
 		AgentCompo.isStopped = true;
 	}
 
+	public void Attack()
+	{
+		Instantiate(AttackEffect, AttackPos.position, transform.rotation);
+	}
+
 	public void AnimationEndTrigger()
 	{
 		StateMachine.CurrentState.AnimationFinishTrigger();
+	}
+
+	public void AnimationPlayingTrigger()
+	{
+		StateMachine.CurrentState.AnimationPlayingTrigger();
 	}
 
 	public void OnDie()
