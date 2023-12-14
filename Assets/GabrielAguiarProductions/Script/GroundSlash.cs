@@ -17,8 +17,9 @@ public class GroundSlash : MonoBehaviour
         if (GetComponent<Rigidbody>() != null)
         {
             rb = GetComponent<Rigidbody>();
-            StartCoroutine(SlowDown());
-        }
+            rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+			//StartCoroutine(SlowDown());
+		}
         else
             Debug.Log("No Rigidbody");
 
