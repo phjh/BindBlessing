@@ -10,6 +10,8 @@ public enum EnemyStateEnum
 	Chasing,
 	Move,
 	Attack,
+	Tired,
+	Refresh,
 	Die
 }
 
