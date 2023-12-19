@@ -25,8 +25,6 @@ public class GolemIdleState : EnemyState
 		{
 			if(_enemyMain.isCompleteCoolDownAttak)
 				_stateManchine.ChangeState(EnemyStateEnum.Attack);
-			else
-				_stateManchine.ChangeState(EnemyStateEnum.Move);
 		}
 	}
 
