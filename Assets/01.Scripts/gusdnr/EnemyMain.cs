@@ -10,7 +10,8 @@ public class EnemyMain : MonoBehaviour
 	[Header("Enemy Stats")]
 	public float HP = 10f;
     public float movementSpeed = 5f;
-    public float attackDelay = 5f;
+	public float rotSpeed = 2f;
+	public float attackDelay = 5f;
 	
 	[Header("Enemy Judgment Values")]
 	[SerializeField,Range(0,100)] private float minRange;
