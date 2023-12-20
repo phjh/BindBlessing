@@ -8,8 +8,9 @@ public enum EnemyStateEnum
 {
 	Idle,
 	Chasing,
-	Move,
+	Turn,
 	Attack,
+	Move,
 	Tired,
 	Refresh,
 	Die

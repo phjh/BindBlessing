@@ -23,6 +23,9 @@ public class EnemyMain : MonoBehaviour
 	[HideInInspector]public float MinRange => minRange;
 	[HideInInspector]public float MaxRange => maxRange;
 
+	[Header("Enemy Using States (Plz make 8 elements)")]
+	[SerializeField]private List<bool> usingState;
+
 	[Header("Enemy Name")]
 	[SerializeField] private string EnemyName = "Enemy";
 
@@ -48,23 +51,28 @@ public class EnemyMain : MonoBehaviour
 
 		foreach(EnemyStateEnum stateEnum in Enum.GetValues(typeof(EnemyStateEnum)))
 		{
-			string typeName = stateEnum.ToString();
-			try
+			if (usingState[(int)stateEnum])
 			{
-				Type type = Type.GetType($"{EnemyName}{typeName}State");
-				EnemyState stateInstance = Activator.CreateInstance(type, this, StateMachine, typeName) as EnemyState;
-
-				StateMachine.AddState(stateEnum, stateInstance);
-			}
-			catch (Exception e)
-			{
-				Debug.LogError($"{stateEnum} State를 받아오지 못했습니다. / 오류: {e.Message}");
+				string typeName = stateEnum.ToString();
+				try
+				{
+					Type type = Type.GetType($"{EnemyName}{typeName}State");
+					EnemyState stateInstance = Activator.CreateInstance(type, this, StateMachine, typeName) as EnemyState;
+					Debug.Log($"Find : {EnemyName}{typeName}State");
+					StateMachine.AddState(stateEnum, stateInstance);
+				}
+				catch (Exception e)
+				{
+					Debug.LogError($"{EnemyName}: {stateEnum} State is not made. / {e.Message}");
+				}
 			}
 		}
+
 	}
 
 	private void Start()
 	{
+		AgentCompo.speed = movementSpeed;
 		StateMachine.Initialize(EnemyStateEnum.Idle, this);
 	}
 

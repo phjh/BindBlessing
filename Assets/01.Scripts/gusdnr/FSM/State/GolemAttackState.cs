@@ -27,6 +27,7 @@ public class GolemAttackState : EnemyState
 	{
 		base.Enter();
 		_enemyMain.StopImmediately();
+		_enemyMain.transform.LookAt(_enemyMain.targetTrm);
 		_enemyMain.AttackShader.SetAttackColor();
 	}
 
@@ -39,6 +40,5 @@ public class GolemAttackState : EnemyState
 	public override void UpdateState()
 	{
 		base.UpdateState();
-		_enemyMain.transform.LookAt(_enemyMain.targetTrm);
 	}
 }
