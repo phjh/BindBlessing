@@ -4,47 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
-public class PlayerRoot : MonoBehaviour, Controls.IPlayerMoveActions
+public class PlayerRoot : MonoBehaviour
 {
-    [SerializeField] protected PlayerStat stat;
-
+    public PlayerStat stat;
     
-    protected Rigidbody _rb;
-    protected CharacterController _characterController;
-    protected Camera _mainCam;
-
-    protected Controls _controls;
-
-    protected event Action _moveAction;
-    protected event Action _attackAction;
-
-    protected Vector2 _mousePos;
-
+    public InputReader _inputReader;
+    
+    public Camera _mainCam;
+    public Rigidbody _rb;
+    public CharacterController _characterController;
 
     private void Awake()
     {
         _mainCam = Camera.main;
-        _rb = GetComponent<Rigidbody>();
-        _characterController = GetComponent<CharacterController>();
-    }
-
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            _moveAction?.Invoke();
-        }
-    }
-
-    public virtual void OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-            _attackAction?.Invoke();
-    }
-
-    public void OnAim(InputAction.CallbackContext context)
-    {
-        _mousePos = context.ReadValue<Vector2>();
+        _rb = GetComponent<Rigidbody>();    
     }
 }
