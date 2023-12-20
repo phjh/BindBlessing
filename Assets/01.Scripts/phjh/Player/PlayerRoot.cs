@@ -12,7 +12,6 @@ public class PlayerRoot : MonoBehaviour
     
     public Camera _mainCam;
     public Rigidbody _rb;
-    public CharacterController _characterController;
 
     private void Awake()
     {
