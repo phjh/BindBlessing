@@ -1760,9 +1760,9 @@ GameObject:
   m_Component:
   - component: {fileID: 664100929}
   - component: {fileID: 664100932}
-  - component: {fileID: 664100934}
   - component: {fileID: 664100933}
   - component: {fileID: 664100935}
+  - component: {fileID: 664100936}
   m_Layer: 10
   m_Name: PlayerObj
   m_TagString: Untagged
@@ -1808,10 +1808,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &664100933
 MonoBehaviour:
@@ -1826,9 +1826,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 11400000, guid: 0042aab53ca977e45bbf052cff07bc52, type: 2}
+  _inputReader: {fileID: 11400000, guid: dc06a36ab5d64374fa00a74ef23c2cae, type: 2}
+  _mainCam: {fileID: 0}
+  _rb: {fileID: 0}
+  _characterController: {fileID: 0}
   nowstate: 0
---- !u!136 &664100934
-CapsuleCollider:
+--- !u!114 &664100935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664100927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f0f6fb000030e468decdf390e8ef06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireObject: {fileID: 5734115642384003656, guid: 8a6ca864b2c30284da3635ca0a3d5211,
+    type: 3}
+  FirePosition: {fileID: 1884083010}
+--- !u!143 &664100936
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1845,26 +1864,14 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.23925719
-  m_Height: 1.4537138
-  m_Direction: 1
-  m_Center: {x: 0.027437657, y: 0.76270956, z: 0.0588108}
---- !u!114 &664100935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664100927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4f0f6fb000030e468decdf390e8ef06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FireObject: {fileID: 5734115642384003656, guid: 8a6ca864b2c30284da3635ca0a3d5211,
-    type: 3}
-  FirePosition: {fileID: 1884083010}
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &668558017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5313d889fa470c14dbe6b72d74630a30,

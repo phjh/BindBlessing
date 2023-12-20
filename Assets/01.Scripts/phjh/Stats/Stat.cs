@@ -35,7 +35,7 @@ public class PlayerStat : ScriptableObject
 }
 
 [Serializable]
-public class Stat  // 그냥 알아서  int만 
+public class Stat  // 그냥 ?�아?? int�?
 {
     
     public int BaseStat = 0;
