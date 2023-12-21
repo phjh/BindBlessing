@@ -8,31 +8,40 @@ public class PlayerMove : PlayerRoot
     float h, v;
     Vector3 dir;
     public int nowstate = 0;
+
+    PlayerAnimation playerAnim;
+
+    private void Start()
+    {
+        playerAnim = GetComponent<PlayerAnimation>();
+    }
+
     private void Update()
     {
-        //h = Input.GetAxisRaw("Horizontal");
-        //v = Input.GetAxisRaw("Vertical");
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
 
-        //dir = Quaternion.Euler(0, 45, 0) * new Vector3(v, 0, -h) * Time.deltaTime * stat.speed.GetStatValue();
+        dir = Quaternion.Euler(0, 45, 0) * new Vector3(v, 0, -h) * Time.deltaTime * stat.speed.GetStatValue();
         //_rb.velocity = dir.normalized;
-        //transform.position += dir;
-        _rb.velocity = _inputReader.movedir;
+        transform.position += dir;
+        //_rb.velocity = _inputReader.movedir;
     }
 
     private void LateUpdate()
     {
-        //Ray ray = _mainCam.ScreenPointToRay(_inputReader.mousePos);
+        if (playerAnim.isAttacking == false)
+        {
+            Ray ray = _mainCam.ScreenPointToRay(Input.mousePosition);
 
-        //if (Physics.Raycast(ray, out RaycastHit hitInfo, _mainCam.farClipPlane))
-        //{
-        //    nowstate = 1;
-        //    Vector3 worldPos = hitInfo.point;
-        //    Vector3 ldir = (worldPos - transform.position);
-        //    ldir.y = 0;
-        //    transform.rotation = Quaternion.LookRotation(ldir);
-        //}
-        //nowstate = 0;
-
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, _mainCam.farClipPlane))
+            {
+                nowstate = 1;
+                Vector3 worldPos = hitInfo.point;
+                Vector3 ldir = (worldPos - transform.position);
+                ldir.y = 0;
+                transform.rotation = Quaternion.LookRotation(ldir);
+            }
+        }
     }
 
     /*private Vector2 inputVector;
