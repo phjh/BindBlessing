@@ -31,7 +31,7 @@ public class GolemRefreshState : EnemyState
 
 	public override void Exit()
 	{
-		_enemyMain.isCompleteCoolDownAttak = true;
+		_enemyMain.StartCoroutine(_enemyMain.CoolDownAttack());
 		base.Exit();
 	}
 }
