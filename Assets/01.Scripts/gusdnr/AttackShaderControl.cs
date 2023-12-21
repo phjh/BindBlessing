@@ -12,7 +12,7 @@ public class AttackShaderControl : MonoBehaviour
 
 	private void Start()
 	{
-		AttackOutlineMat.color = DefaultColor;
+		AttackOutlineMat.SetFloat("_ColorRValue", 0);
 	}
 
 	public void SetAttackColor()

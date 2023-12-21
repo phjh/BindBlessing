@@ -11,22 +11,29 @@ public class GolemAttackState : EnemyState
 	public override void AnimationFinishTrigger()
 	{
 		base.AnimationFinishTrigger();
+		_enemyMain.isCompleteCoolDownAttak = false;
+		_enemyMain.AttackShader.SetDefaultColor();
+		_stateManchine.ChangeState(EnemyStateEnum.Tired);
+
 	}
 
 	public override void AnimationPlayingTrigger()
 	{
 		base.AnimationPlayingTrigger();
-		
+		_enemyMain.Attack();
 	}
 
 	public override void Enter()
 	{
 		base.Enter();
+		_enemyMain.StopImmediately();
+		_enemyMain.transform.LookAt(_enemyMain.targetTrm);
 		_enemyMain.AttackShader.SetAttackColor();
 	}
 
 	public override void Exit()
 	{
+		_enemyMain.AgentCompo.ResetPath();
 		base.Exit();
 	}
 
