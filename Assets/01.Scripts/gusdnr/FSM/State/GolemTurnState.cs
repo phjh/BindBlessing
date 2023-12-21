@@ -13,6 +13,7 @@ public class GolemTurnState : EnemyState
 	public override void AnimationFinishTrigger()
 	{
 		base.AnimationFinishTrigger();
+		_stateManchine.ChangeState(EnemyStateEnum.Idle);
 	}
 
 	public override void Enter()
@@ -28,7 +29,6 @@ public class GolemTurnState : EnemyState
 		Quaternion rotationAngle = Quaternion.Slerp(_enemyMain.transform.rotation, Quaternion.LookRotation(direction), _enemyMain.rotSpeed * Time.deltaTime);
 		rotationAngle.x = rotationAngle.z = 0;
 		_enemyMain.transform.rotation = rotationAngle;
-		if(_enemyMain.transform.rotation == rotationAngle) _stateManchine.ChangeState(EnemyStateEnum.Idle);
 	}
 
 	public override void Exit()
