@@ -29,7 +29,7 @@ public class EnemyState
 
     public virtual void UpdateState()
     {
-        
+        if(_enemyMain.HP <= 0) _stateManchine.ChangeState(EnemyStateEnum.Die);
     }
 
     public virtual void Exit()
