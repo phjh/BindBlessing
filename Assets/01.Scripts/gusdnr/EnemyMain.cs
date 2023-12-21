@@ -111,7 +111,7 @@ public class EnemyMain : MonoBehaviour
 	public void OnDie()
 	{
 		Destroy(gameObject);
-	} 
+	}
 
 	public bool IsTargetInRange()
 	{

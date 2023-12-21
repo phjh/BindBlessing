@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4824265931644141827}
   - component: {fileID: -6346932741737321111}
   - component: {fileID: -3160931527728924869}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: electric_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
